@@ -1,27 +1,21 @@
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
-    private static final char EMPTY = ' ';
-    private static final char PLAYER = 'X';
-    private static final char COMPUTER = 'O';
-    private static final char[] board = new char[9];
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Random random = new Random();
+    private final char EMPTY = ' ';
+    private final char PLAYER = 'X';
+    private final char COMPUTER = 'O';
+    private final char[] board = new char[9];
+    private final Scanner scanner = new Scanner(System.in);
+    private final Random random = new Random();
 
-    public static void main(String[] args) {
-        initializeBoard();
-        System.out.println("Enter box number to select");
-        playGame();
-    }
-
-    private static void initializeBoard() {
+    public void initializeBoard() {
         for (int i = 0; i < board.length; i++) {
             board[i] = EMPTY;
         }
     }
 
-    private static void playGame() {
+    public void playGame() {
         while (true) {
             printBoard();
             playerMove();
@@ -44,7 +38,7 @@ public class TicTacToe {
         }
     }
 
-    private static void printBoard() {
+    private void printBoard() {
         System.out.println("\n " + board[0] + " | " + board[1] + " | " + board[2]);
         System.out.println("-----------");
         System.out.println(" " + board[3] + " | " + board[4] + " | " + board[5]);
@@ -52,7 +46,7 @@ public class TicTacToe {
         System.out.println(" " + board[6] + " | " + board[7] + " | " + board[8] + " \n");
     }
 
-    private static void playerMove() {
+    private void playerMove() {
         int input;
         while (true) {
             System.out.print("Enter your move (1-9): ");
@@ -65,7 +59,7 @@ public class TicTacToe {
         }
     }
 
-    private static void computerMove() {
+    private void computerMove() {
         int move;
         do {
             move = random.nextInt(9);
@@ -73,7 +67,7 @@ public class TicTacToe {
         board[move] = COMPUTER;
     }
 
-    private static boolean checkWinner(char symbol) {
+    private boolean checkWinner(char symbol) {
         int[][] winningCombinations = {
                 {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
                 {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
@@ -87,7 +81,7 @@ public class TicTacToe {
         return false;
     }
 
-    private static boolean isBoardFull() {
+    private boolean isBoardFull() {
         for (char cell : board) {
             if (cell == EMPTY) {
                 return false;
